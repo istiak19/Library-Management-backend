@@ -25,6 +25,9 @@ const borrowSchema = new Schema<IBorrow>({
             message: "Due date must be a future date",
         },
     }
+}, {
+    timestamps: true,
+    versionKey: false
 });
 
 export const Borrow = model<IBorrow>("Borrow", borrowSchema);

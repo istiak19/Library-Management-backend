@@ -1,7 +1,7 @@
-import { model, Schema } from "mongoose";
-import { IBook } from "../interface/book.interface";
+import { Model, model, Schema } from "mongoose";
+import { BookModel, booksMethods, IBook } from "../interface/book.interface";
 
-const bookSchema = new Schema<IBook>({
+const bookSchema = new Schema<IBook, Model<IBook>, BookModel, booksMethods>({
     title: {
         type: String,
         required: [true, "Title is required"],
@@ -42,4 +42,14 @@ const bookSchema = new Schema<IBook>({
     versionKey: false
 });
 
-export const Book = model<IBook>("Book", bookSchema);
+bookSchema.method("borrowQuantity", function (quantity: number) {
+    if (this.copies < quantity) {
+        throw new Error("Not enough copies available");
+    }
+    this.copies -= quantity;
+    if (this.copies === 0) {
+        this.available = false;
+    }
+})
+
+export const Book = model<IBook, BookModel, booksMethods>("Book", bookSchema);
