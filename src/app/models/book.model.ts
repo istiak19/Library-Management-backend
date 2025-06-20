@@ -18,13 +18,14 @@ const bookSchema = new Schema<IBook>({
             values: ["FICTION", "NON_FICTION", "SCIENCE", "HISTORY", "BIOGRAPHY", "FANTASY"],
             message: '{VALUE} is not supported'
         },
-        required: true,
-        trim: true
+        required: [true, "Genre is required"],
+        trim: true,
+        uppercase: true
     },
     isbn: {
         type: String,
         unique: true,
-        required: true
+        required: [true, "ISBN is required"]
     },
     description: String,
     copies: {
@@ -36,6 +37,9 @@ const bookSchema = new Schema<IBook>({
         type: Boolean,
         default: true
     }
+}, {
+    timestamps: true,
+    versionKey: false
 });
 
 export const Book = model<IBook>("Book", bookSchema);

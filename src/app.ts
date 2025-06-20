@@ -4,8 +4,8 @@ import { bookRouter } from "./app/controllers/book.controller";
 
 const app: Application = express();
 app.use(express.json())
-app.use("/api/bookRoutes", bookRouter)
-app.use("/api/borrowRoutes", borrowRoute)
+app.use("/api", bookRouter)
+app.use("/api", borrowRoute)
 
 
 app.get('/', (req: Request, res: Response) => {
