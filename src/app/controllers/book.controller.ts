@@ -83,7 +83,7 @@ bookRouter.put("/books/:bookId", async (req: Request, res: Response) => {
             { new: true }
         );
         if (!book) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Book not found",
             });

@@ -45,7 +45,7 @@ borrowRoute.get("/borrow", async (req: Request, res: Response) => {
             error,
         });
     }
-})
+});
 
 // Borrow post
 borrowRoute.post("/borrow", async (req: Request, res: Response) => {
@@ -53,29 +53,29 @@ borrowRoute.post("/borrow", async (req: Request, res: Response) => {
         const { book, quantity, dueDate } = req.body;
         const data = await Book.findOne({ _id: book });
         if (!data) {
-            return res.status(404).json({
+            res.status(404).json({
                 success: false,
                 message: "Book not found",
             });
-        }
-        if (!data.available) {
-            return res.status(400).json({
+        } else if (!data.available) {
+            res.status(400).json({
                 success: false,
                 message: "Book is not available for borrowing",
             });
+        } else {
+            data.borrowQuantity(quantity)
+            await data.save();
+            const borrow = await Borrow.create({
+                book: data._id,
+                quantity,
+                dueDate,
+            });
+            res.status(201).json({
+                success: true,
+                message: "Book borrowed successfully",
+                data: borrow,
+            })
         }
-        data.borrowQuantity(quantity)
-        await data.save();
-        const borrow = await Borrow.create({
-            book: data._id,
-            quantity,
-            dueDate,
-        });
-        res.status(201).json({
-            success: true,
-            message: "Book borrowed successfully",
-            data: borrow,
-        })
     } catch (error: any) {
         if (error.name === "ValidationError") {
             res.status(400).json({
@@ -86,10 +86,9 @@ borrowRoute.post("/borrow", async (req: Request, res: Response) => {
         } else {
             res.status(500).json({
                 success: false,
-                message: "Something went wrong",
+                message: error.message || "Something went wrong",
                 error,
             });
         }
     }
-
-})
+});
