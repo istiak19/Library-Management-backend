@@ -80,7 +80,7 @@ bookRouter.put("/books/:bookId", async (req: Request, res: Response) => {
         const book = await Book.findOneAndUpdate(
             { _id: id },
             updatedBookInfo,
-            { new: true }
+            { new: true, runValidators: true }
         );
         if (!book) {
             res.status(404).json({

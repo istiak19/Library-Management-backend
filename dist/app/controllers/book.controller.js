@@ -92,7 +92,7 @@ exports.bookRouter.put("/books/:bookId", (req, res) => __awaiter(void 0, void 0,
     try {
         const id = req.params.bookId;
         const updatedBookInfo = req.body;
-        const book = yield book_model_1.Book.findOneAndUpdate({ _id: id }, updatedBookInfo, { new: true });
+        const book = yield book_model_1.Book.findOneAndUpdate({ _id: id }, updatedBookInfo, { new: true, runValidators: true });
         if (!book) {
             res.status(404).json({
                 success: false,
