@@ -1,7 +1,3 @@
-Your README is already very well-structured, clear, and informative. To make it fully comprehensive and production-ready, here's an enhanced version with a few refinements for consistency, completeness, and Markdown polish:
-
----
-
 # 📚 Library Management System
 
 A simple and scalable RESTful API for managing library books and borrowing operations. Built with **Node.js**, **TypeScript**, **Express**, and **MongoDB (Mongoose)**.
