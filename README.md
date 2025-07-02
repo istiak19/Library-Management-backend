@@ -6,83 +6,83 @@ A simple and scalable RESTful API for managing library books and borrowing opera
 
 ## 📖 Table of Contents
 
-* [Introduction](#📌-introduction)
-* [Features](#✨-features)
-* [Installation](#🛠️-installation)
-* [Usage](#🚀-usage)
-* [Configuration](#⚙️-configuration)
-* [Project Structure](#🗂️-project-structure)
-* [Scripts](#📜-scripts)
-* [Dependencies](#📦-dependencies)
-* [API Endpoints](#📡-api-endpoints-optional)
-* [Troubleshooting](#🧩-troubleshooting)
-* [Contributors](#👥-contributors)
-* [License](#📝-license)
+* [📌 Introduction](#📌-introduction)
+* [✨ Features](#✨-features)
+* [🛠️ Installation](#🛠️-installation)
+* [🚀 Usage](#🚀-usage)
+* [⚙️ Configuration](#⚙️-configuration)
+* [🗂️ Project Structure](#🗂️-project-structure)
+* [📜 Scripts](#📜-scripts)
+* [📦 Dependencies](#📦-dependencies)
+* [📡 API Endpoints (Planned)](#📡-api-endpoints-planned)
+* [🧩 Troubleshooting](#🧩-troubleshooting)
+* [👥 Contributors](#👥-contributors)
+* [📝 License](#📝-license)
 
 ---
 
 ## 📌 Introduction
 
-This project provides a backend server built with Express and TypeScript to manage a library system, supporting functionalities such as book management, member registration, and lending operations (to be implemented). MongoDB is used for persistent data storage.
+The **Library Management System** backend is a RESTful API designed to handle book inventory, member registration, and lending operations. It uses **Express.js** for the web server, **MongoDB** (via **Mongoose**) for data storage, and is written in **TypeScript** for type safety and maintainability.
 
 ---
 
 ## ✨ Features
 
-* 📦 Express.js server with full TypeScript support
-* 🌱 MongoDB integration via Mongoose
-* 🔐 Environment-based configuration using `dotenv`
-* 🧹 Linting with ESLint and TypeScript plugins
-* 🔁 Hot-reloading for development using `ts-node-dev`
+* **TypeScript**-based Express server
+* **MongoDB** integration with Mongoose
+* **Environment configuration** via `dotenv`
+* **ESLint** for linting and code quality
+* **Hot-reloading** during development with `ts-node-dev`
 
 ---
 
 ## 🛠️ Installation
 
-1. **Clone the repository**
+### 1. Clone the repository
 
-   ```bash
-   git clone https://github.com/istiak19/Library-Management-backend
-   cd Library-Management-backend
-   ```
+```bash
+git clone https://github.com/istiak19/Library-Management-backend
+cd Library-Management-backend
+```
 
-2. **Install dependencies**
+### 2. Install dependencies
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-3. **Set up environment variables**
+### 3. Set up environment variables
 
-   Create a `.env` file in the root directory:
+Create a `.env` file in the root directory:
 
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb+srv://<username>:<password>@cluster0.fnfrn.mongodb.net/libraryDB?retryWrites=true&w=majority&appName=Cluster0
-   ```
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.fnfrn.mongodb.net/libraryDB?retryWrites=true&w=majority&appName=Cluster0
+```
 
-   > ⚠️ **Important**: Never commit `.env` files to version control.
+> ⚠️ **Important**: Never commit `.env` files to version control.
 
 ---
 
 ## 🚀 Usage
 
-### Run in development mode
+### Start development server
 
 ```bash
 npm run dev
 ```
 
-Server will be available at `http://localhost:<PORT>` (default: `5000`).
+By default, the server will run at: [http://localhost:5000](http://localhost:5000)
 
 ---
 
 ## ⚙️ Configuration
 
-| Variable    | Description                     |
-| ----------- | ------------------------------- |
-| `PORT`      | Port number for the application |
-| `MONGO_URI` | MongoDB connection string       |
+| Variable    | Description                          |
+| ----------- | ------------------------------------ |
+| `PORT`      | Port on which the server will listen |
+| `MONGO_URI` | MongoDB connection URI               |
 
 ---
 
@@ -92,11 +92,11 @@ Server will be available at `http://localhost:<PORT>` (default: `5000`).
 Library Management System/
 ├── src/
 │   ├── app.ts            # Express app setup
-│   └── server.ts         # Entry point – DB connection & server startup
-├── .env                  # Environment variables (ignored in git)
+│   └── server.ts         # Entry point – DB connection & startup
+├── .env                  # Environment variables (not committed)
+├── .eslintrc             # ESLint configuration
 ├── package.json
 ├── tsconfig.json         # TypeScript configuration
-├── .eslintrc             # ESLint rules
 └── README.md
 ```
 
@@ -104,13 +104,13 @@ Library Management System/
 
 ## 📜 Scripts
 
-| Command            | Description                               |
-| ------------------ | ----------------------------------------- |
-| `npm run dev`      | Run development server with hot-reloading |
-| `npm run build`    | Compile TypeScript to JavaScript          |
-| `npm run lint`     | Lint codebase using ESLint                |
-| `npm run lint:fix` | Auto-fix linting issues                   |
-| `npm run test`     | Run test suite (currently placeholder)    |
+| Command            | Description                             |
+| ------------------ | --------------------------------------- |
+| `npm run dev`      | Start server in development mode        |
+| `npm run build`    | Compile TypeScript to JavaScript        |
+| `npm run lint`     | Run ESLint for code analysis            |
+| `npm run lint:fix` | Automatically fix linting issues        |
+| `npm run test`     | Placeholder for future test integration |
 
 ---
 
@@ -118,22 +118,22 @@ Library Management System/
 
 ### Runtime
 
-* `express` – Web server framework
-* `mongoose` – MongoDB object modeling
-* `dotenv` – Environment variable management
+* **express** – Web framework
+* **mongoose** – MongoDB object modeling
+* **dotenv** – Loads environment variables
+* **cors** – Enables Cross-Origin Resource Sharing
 
 ### Development
 
-* `typescript` – TypeScript support
-* `ts-node-dev` – Dev server with auto-restart
-* `eslint`, `@typescript-eslint/*` – Code linting and formatting
-* `@types/express` – Type definitions for Express
+* **typescript** – TypeScript support
+* **ts-node-dev** – Development server with hot reload
+* **eslint** – Linting utility
+* **@typescript-eslint/** – ESLint plugins for TypeScript
+* **@types/** – Type definitions for TypeScript
 
 ---
 
-## 📡 API Endpoints (optional)
-
-*These are planned or example routes that could be included in your API:*
+## 📡 API Endpoints (Planned)
 
 ```http
 GET    /api/books         - List all books
@@ -143,15 +143,17 @@ PUT    /api/books/:id     - Update a book
 DELETE /api/books/:id     - Remove a book
 ```
 
+> Additional routes for member registration and lending will be added soon.
+
 ---
 
 ## 🧩 Troubleshooting
 
-| Issue                     | Solution                                                             |
-| ------------------------- | -------------------------------------------------------------------- |
-| MongoDB connection error  | Ensure `MONGO_URI` is correct and the cluster allows your IP address |
-| Port already in use       | Change the `PORT` in your `.env` or free up the port                 |
-| TypeScript compile issues | Check your types and interfaces are correctly defined                |
+| Issue                     | Solution                                                    |
+| ------------------------- | ----------------------------------------------------------- |
+| MongoDB connection error  | Ensure your `MONGO_URI` is correct and IP access is allowed |
+| Port already in use       | Change `PORT` in `.env` or free up the port                 |
+| TypeScript compile issues | Ensure all types and interfaces are properly defined        |
 
 ---
 
