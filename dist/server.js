@@ -22,9 +22,9 @@ function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield mongoose_1.default.connect(process.env.MONGO_URI);
-            console.log("Connection to MongoDB!");
+            console.log("Connected to MongoDB!");
             server = app_1.default.listen(port, () => {
-                console.log(`Library Management app listening on port ${port}`);
+                console.log(`Server is running at http://localhost:${port}`);
             });
         }
         catch (error) {
